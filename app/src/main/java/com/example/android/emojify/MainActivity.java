@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String FILE_PROVIDER_AUTHORITY = "com.example.android.fileprovider";
 
     private ImageView mImageView;
+    private TextView mResult;
 
     private Button mEmojifyButton;
     private FloatingActionButton mShareFab;
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Bind the views
         mImageView = (ImageView) findViewById(R.id.image_view);
+        mResult = (TextView) findViewById(R.id.textview_result);
         mEmojifyButton = (Button) findViewById(R.id.emojify_button);
         mShareFab = (FloatingActionButton) findViewById(R.id.share_button);
         mSaveFab = (FloatingActionButton) findViewById(R.id.save_button);
@@ -182,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
         mResultsBitmap = BitmapUtils.resamplePic(this, mTempPhotoPath);
         
         // Detect the faces
-        Emojifier.detectFaces(this, mResultsBitmap);
+        mResult.setText(Emojifier.detectFaces(this, mResultsBitmap));
         
         // Set the new bitmap to the ImageView
         mImageView.setImageBitmap(mResultsBitmap);
